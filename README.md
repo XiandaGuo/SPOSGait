@@ -69,6 +69,13 @@ If this work is helpful for your research, please consider citing the following 
   pages={14789--14799},
   year={2021}
 }
+@article{guo2022gait,
+  title={Gait Recognition in the Wild: A Large-scale Benchmark and NAS-based Baseline},
+  author={Guo, Xianda and Zhu, Zheng and Yang, Tian and Lin, Beibei and Huang, Junjie and Deng, Jiankang and Huang, Guan and Zhou, Jie and Lu, Jiwen},
+  journal={arXiv e-prints},
+  pages={arXiv--2205},
+  year={2022}
+}
 @inproceedings{wang2022gaitstrip,
   title={Gaitstrip: Gait recognition via effective strip-based feature representations and multi-level framework},
   author={Wang, Ming and Lin, Beibei and Guo, Xianda and Li, Lincheng and Zhu, Zheng and Sun, Jiande and Zhang, Shunli and Liu, Yu and Yu, Xin},
@@ -83,12 +90,6 @@ If this work is helpful for your research, please consider citing the following 
   pages={13424--13433},
   year={2023}
 }
-@article{guo2022gait,
-  title={Gait Recognition in the Wild: A Large-scale Benchmark and NAS-based Baseline},
-  author={Guo, Xianda and Zhu, Zheng and Yang, Tian and Lin, Beibei and Huang, Junjie and Deng, Jiankang and Huang, Guan and Zhou, Jie and Lu, Jiwen},
-  journal={arXiv e-prints},
-  pages={arXiv--2205},
-  year={2022}
-}
+
 ```
 **Note**: This code is only used for academic purposes, people cannot use this code for anything that might be considered commercial use.
