@@ -72,7 +72,7 @@ trainer_cfg:
   log_iter: 100
   restore_ckpt_strict: true
 
-  restore_hint: 170000
+  restore_hint: 0
   save_iter: 10000
   save_name: SPOSGait_small_GREW-train5000id_retrain
   sync_BN: true

@@ -76,9 +76,9 @@ trainer_cfg:
   log_iter: 100
   restore_ckpt_strict: true
 
-  restore_hint: 60000
+  restore_hint: 0
   save_iter: 500
-  save_name: ResLGaitv2_supergait_retrain_t1s1_gait3d_c128c256
+  save_name: SPOSGait_large_t1s1_Gait3d_c128c256
   sync_BN: true
   total_iter: 61001
   sampler:
