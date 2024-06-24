@@ -47,3 +47,15 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_
 ```
 - `--phase` Specified as `test`.
 - `--iter` Specify a iteration checkpoint.
+
+## Citation
+```
+@article{guo2022gait,
+  title={Gait Recognition in the Wild: A Large-scale Benchmark and NAS-based Baseline},
+  author={Guo, Xianda and Zhu, Zheng and Yang, Tian and Lin, Beibei and Huang, Junjie and Deng, Jiankang and Huang, Guan and Zhou, Jie and Lu, Jiwen},
+  journal={arXiv e-prints},
+  pages={arXiv--2205},
+  year={2022}
+}
+```
+**Note**: This code is only used for academic purposes, people cannot use this code for anything that might be considered commercial use.
