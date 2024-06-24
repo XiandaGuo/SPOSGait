@@ -181,10 +181,6 @@ class BaseModel(MetaModel, nn.Module):
         if restore_hint != 0:
             self.resume_ckpt(restore_hint)
 
-        self.clip_grade_config = cfgs['trainer_cfg'].get('clip_grad_cfg', {})
-        self.clip_gard = NoOp()
-        self.build_clip_grad()
-
     def get_backbone(self, backbone_cfg):
         """Get the backbone of the model."""
         if is_dict(backbone_cfg):
@@ -217,15 +213,6 @@ class BaseModel(MetaModel, nn.Module):
                     nn.init.normal_(m.weight.data, 1.0, 0.02)
                     nn.init.constant_(m.bias.data, 0.0)
 
-
-    def build_clip_grad(self):
-        clip_type = self.clip_grade_config.get('type', None)
-        if clip_type is None:
-            return
-        clip_value = self.clip_grade_config.get('clip_value', 0.1)
-        max_norm = self.clip_grade_config.get('max_norm', 35)
-        norm_type = self.clip_grade_config.get('norm_type', 2)
-        self.clip_gard = ClipGrad(clip_type, clip_value, max_norm, norm_type)
 
     def get_loader(self, data_cfg, train=True):
         sampler_cfg = self.cfgs['trainer_cfg']['sampler'] if train else self.cfgs['evaluator_cfg']['sampler']
@@ -410,11 +397,6 @@ class BaseModel(MetaModel, nn.Module):
 
         if self.engine_cfg['enable_float16']:
             self.Scaler.scale(loss_sum).backward()
-
-            # clip ga'rd by xianda.guo
-            # self.Scaler.unscale_(self.optimizer)
-            # self.clip_gard(self)
-
             self.Scaler.step(self.optimizer)
             scale = self.Scaler.get_scale()
             self.Scaler.update()
@@ -427,7 +409,6 @@ class BaseModel(MetaModel, nn.Module):
                 return False
         else:
             loss_sum.backward()
-            # self.clip_gard(self)  # clip ga'rd by xianda.guo
             self.optimizer.step()
 
         self.iteration += 1

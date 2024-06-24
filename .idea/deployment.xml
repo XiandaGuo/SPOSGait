@@ -6,7 +6,14 @@
       <paths name="waytous">
         <serverdata>
           <mappings>
-            <mapping deploy="/OpenGaitPAMI" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/SPOSGait" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="xianda.guo@123.151.101.33:20022 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/SPOSGait" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

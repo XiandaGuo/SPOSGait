@@ -88,10 +88,5 @@ trainer_cfg:
     sample_type: fixed_ordered
     type: TripletSampler
 
-  clip_grad_cfg:
-    type: value
-    clip_value: 0.1
-  #    max_norm: 35
-  #    norm_type: 2
   transform:
     - type: BaseSilCuttingTransform
