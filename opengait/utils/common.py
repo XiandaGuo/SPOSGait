@@ -141,7 +141,6 @@ def config_loader(path):
     with open(path, 'r') as stream:
         src_cfgs = yaml.safe_load(stream)
     with open("./configs/default.yaml", 'r') as stream:
-        # with open("/mnt/cfs/algorithm/xianda.guo/code/OpenGait0914/configs/default.yaml", 'r') as stream:
         dst_cfgs = yaml.safe_load(stream)
     MergeCfgsDict(src_cfgs, dst_cfgs)
     return dst_cfgs

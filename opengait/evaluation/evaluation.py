@@ -4,7 +4,6 @@ import torch, math
 import numpy as np
 import torch.nn.functional as F
 from utils import get_msg_mgr, mkdir, MeanIOU
-from gxd.score import get_scoreBy_localgt
 from .metric import mean_iou, cuda_dist, compute_ACC_mAP, evaluate_rank, evaluate_many
 from .re_rank import re_ranking
 
@@ -223,39 +222,10 @@ def identification_GREW_submission(data, dataset, use_dist=True, metric='euc'):
     probe_x = feature[pseq_mask, :]
     probe_y = view[pseq_mask]
 
-    flg_yt = True
-    if use_dist and flg_yt:
-        pkl_probex = '/mnt/cfs/algorithm/xianda.guo/data/sil/pkl_for_test/pkl_probe_x_disall.npy'
-        pkl_gallerx = '/mnt/cfs/algorithm/xianda.guo/data/sil/pkl_for_test/pkl_gallerx_disall.npy'
-        pkl_probey = '/mnt/cfs/algorithm/xianda.guo/data/sil/pkl_for_test/pkl_probe_y_disall.npy'
-        pkl_gallery = '/mnt/cfs/algorithm/xianda.guo/data/sil/pkl_for_test/pkl_gallery_disall.npy'
-
-        np.save(pkl_probex, probe_x)
-        np.save(pkl_gallerx, gallery_x)
-        np.save(pkl_probey, probe_y)
-        np.save(pkl_gallery, gallery_y)
-        raise ValueError('eval distractor by computer_dist.py! ')
     dist = cuda_dist(probe_x, gallery_x, metric)
     idx = dist.cpu().sort(1)[1].numpy()
 
-    flg_roc=False
-    if flg_roc:
-        dist_numpy = dist.cpu().numpy()
-        save_root_roc = '/mnt/nas/algorithm/xianda.guo/data/gait/sposgait-s'
-        path_dist_numpy = os.path.join(save_root_roc, 'dist_numpy.npy')
-        pkl_gallery = os.path.join(save_root_roc, 'pkl_gallery.npy')
-        pkl_probey = os.path.join(save_root_roc, 'pkl_probe_y_disall.npy')
-        np.save(path_dist_numpy, dist_numpy)
-        np.save(pkl_probey, probe_y)
-        np.save(pkl_gallery, gallery_y)
-        print('npy for roc have been saved!')
-
     save_path = os.path.join("GREW_result/"+strftime('%Y-%m%d-%H%M%S', localtime())+".csv")
-
-    # if use_dist:
-    #     save_path = os.path.join("GREW_result/GaitGLBNNeck/" + 'testID{}_distractor.csv'.format(int(len(idx) / 2)))
-    # else:
-    #     save_path = os.path.join("GREW_result/GaitGLBNNeck/" + 'testID{}.csv'.format(int(len(idx) / 2)))
 
     mkdir("GREW_result")
     with open(save_path, "w") as f:
@@ -266,11 +236,6 @@ def identification_GREW_submission(data, dataset, use_dist=True, metric='euc'):
             output_row = '{}' + ',{}' * 20 + '\n'
             f.write(output_row.format(probe_y[i], *r_format))
         print("GREW result saved to {}/{}".format(os.getcwd(), save_path))
-
-    # evaluation by local gt csv!
-    ref_path = '/mnt/nas/algorithm/xianda.guo/data/grew_challenge_gt.csv'
-    scores = get_scoreBy_localgt(ref_path, save_path)
-    print('all results of rank20 *100 is:', list(scores))
 
     return
 
