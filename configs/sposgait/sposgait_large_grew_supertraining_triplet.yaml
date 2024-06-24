@@ -1,0 +1,87 @@
+# Note  : *** the batch_size should be equal to the gpus number at the test phase!!! ***
+data_cfg:
+  dataset_name: GREW
+  dataset_root: /mnt/nas/public_data/gait/GREW/GREW-pkl/
+  dataset_partition: ./datasets/GREW/GREW.json
+  num_workers: 16
+  remove_no_gallery: false # Remove probe if no gallery for it
+  test_dataset_name: GREW
+  num_train: &class_num 20000
+
+evaluator_cfg:
+  enable_distributed: true
+  enable_float16: false 
+  restore_ckpt_strict: true
+  restore_hint: 0
+  save_name: sposgait_large_GREW-train20000id_triplet
+  eval_func: identification_real_scene # identification_real_scene # identification_GREW_submission
+  sampler:
+    batch_size: 8
+    sample_type: all_ordered
+    type: InferenceSampler
+
+loss_cfg:
+  - loss_term_weight: 1.0
+    margin: 0.2
+    type: TripletLoss
+    log_prefix: triplet
+#  - loss_term_weight: 0.1
+#    scale: 16
+#    type: CrossEntropyLoss
+#    log_prefix: softmax
+#    log_accuracy: true
+
+model_cfg:
+  choice_debug: False
+  choice_max_num: [1, 1, 6, 6, 6, 6, 6, 6, 6, 6]
+  model: SPOSGait_large
+  channels: [64, 128, 256, 512]
+  class_num: *class_num
+  SeparateFCs: #2024.5.17
+    in_channels: 512
+    out_channels: 512
+    parts_num: 31
+  SeparateBNNecks:
+    class_num: *class_num
+    in_channels: 512
+    parts_num: 31
+  bin_num: #2024.5.17
+    - 16
+    - 8
+    - 4
+    - 2
+    - 1
+
+optimizer_cfg:
+  lr: 0.1
+  momentum: 0.9
+  solver: SGD
+  weight_decay: 0.0005
+
+scheduler_cfg:
+  gamma: 0.1
+  milestones:
+    - 250000
+    - 350000
+  scheduler: MultiStepLR
+
+trainer_cfg:
+  enable_distributed: true
+  enable_float16: true
+  with_test: false
+  log_iter: 100
+  restore_ckpt_strict: true
+  restore_hint: 0
+  save_iter: 10000
+  save_name: sposgait_large_GREW-train20000id_triplet
+  sync_BN: true
+  total_iter: 500000
+  sampler:
+    batch_shuffle: true
+    batch_size:
+      - 32
+      - 4
+    frames_num_fixed: 30
+    frames_skip_num: 0
+    sample_type: fixed_ordered
+    type: TripletSampler
