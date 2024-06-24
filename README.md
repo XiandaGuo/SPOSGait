@@ -11,7 +11,16 @@
 - **[2024/6/24]** Training and evaluation code release.
 - **[2024/1]** Paper released on [arXiv](https://arxiv.org/pdf/2205.02692).
 
-## SupernetTraining
+## Getting Started
+
+### 0. Prepare datasets
+
+We provide the following tutorials for your reference:
+- [Download GREW dataset](docs/1.download_GREW.md)
+- [Prepare dataset](docs/2.prepare_dataset.md)
+
+
+### 1. SupernetTraining
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -u -m torch.distributed.launch --nproc_per_node=8 opengait/main.py --cfgs configs/sposgait/sposgait_large_grew_supertraining_triplet.yaml --phase train
 ```
@@ -25,19 +34,19 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -u -m torch.distributed.launch --npr
 You can run commands in [train.sh](train.sh) for training different models.
 
 
-## Search
+### 2. Search
 ```
 多卡搜索
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -u -m torch.distributed.launch --nproc_per_node=8  opengait/search.py --cfgs ./configs/sposgait/sposgait_medium_grew_supertraining_triplet.yaml --max-epochs 10
 ```
 
-## Calculate_flops_and_params
+### Calculate_flops_and_params
 ```
 CUDA_VISIBLE_DEVICES=0 python -u -m torch.distributed.launch --nproc_per_node=1 opengait/calculate_flops_and_params.py --cfgs configs/sposgait/retrain/sposgait_large_GREW-train20000id_retrain.yaml
 ```
 
 
-## ReTrain
+### 3. ReTrain
 Train a model by
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -u -m torch.distributed.launch --nproc_per_node=8 opengait/main.py --cfgs ./configs/sposgait/retrain/sposgait_large_GREW-train20000id_retrain.yaml --phase train
@@ -51,7 +60,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -u -m torch.distributed.launch --npr
 
 You can run commands in [train.sh](train.sh) for training different models.
 
-## Test
+### 4. Test
 Evaluate the trained model by
 ```
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node=8 opengait/main.py --cfgs ./configs/sposgait/retrain/sposgait_large_GREW-train20000id_retrain.yaml --phase test
