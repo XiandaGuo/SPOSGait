@@ -410,14 +410,10 @@ class BaseModel(MetaModel, nn.Module):
 
         if self.engine_cfg['enable_float16']:
             self.Scaler.scale(loss_sum).backward()
-            # print('-'*100)
-            # print(self.conv3d_41[0][0].conv3d.weight.grad)
-            # print(type(self.conv3d_41[0][0].conv3d))
-            # if self.conv3d_41[0][0].conv3d.weight.grad is not None:
-            #     print(self.conv3d_41[0][0].conv3d.weight.grad.norm())
 
-            self.Scaler.unscale_(self.optimizer)
-            self.clip_gard(self)
+            # clip ga'rd by xianda.guo
+            # self.Scaler.unscale_(self.optimizer)
+            # self.clip_gard(self)
 
             self.Scaler.step(self.optimizer)
             scale = self.Scaler.get_scale()
@@ -431,7 +427,7 @@ class BaseModel(MetaModel, nn.Module):
                 return False
         else:
             loss_sum.backward()
-            self.clip_gard(self)
+            # self.clip_gard(self)  # clip ga'rd by xianda.guo
             self.optimizer.step()
 
         self.iteration += 1
