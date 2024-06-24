@@ -60,7 +60,29 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_
 - `--iter` Specify a iteration checkpoint.
 
 ## Citation
+If this work is helpful for your research, please consider citing the following BibTeX entries.
 ```
+@inproceedings{zhu2021gait,
+  title={Gait recognition in the wild: A benchmark},
+  author={Zhu, Zheng and Guo, Xianda and Yang, Tian and Huang, Junjie and Deng, Jiankang and Huang, Guan and Du, Dalong and Lu, Jiwen and Zhou, Jie},
+  booktitle={Proceedings of the IEEE/CVF international conference on computer vision},
+  pages={14789--14799},
+  year={2021}
+}
+@inproceedings{wang2022gaitstrip,
+  title={Gaitstrip: Gait recognition via effective strip-based feature representations and multi-level framework},
+  author={Wang, Ming and Lin, Beibei and Guo, Xianda and Li, Lincheng and Zhu, Zheng and Sun, Jiande and Zhang, Shunli and Liu, Yu and Yu, Xin},
+  booktitle={Proceedings of the Asian conference on computer vision},
+  pages={536--551},
+  year={2022}
+}
+@inproceedings{wang2023dygait,
+  title={DyGait: Exploiting dynamic representations for high-performance gait recognition},
+  author={Wang, Ming and Guo, Xianda and Lin, Beibei and Yang, Tian and Zhu, Zheng and Li, Lincheng and Zhang, Shunli and Yu, Xin},
+  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
+  pages={13424--13433},
+  year={2023}
+}
 @article{guo2022gait,
   title={Gait Recognition in the Wild: A Large-scale Benchmark and NAS-based Baseline},
   author={Guo, Xianda and Zhu, Zheng and Yang, Tian and Lin, Beibei and Huang, Junjie and Deng, Jiankang and Huang, Guan and Zhou, Jie and Lu, Jiwen},
