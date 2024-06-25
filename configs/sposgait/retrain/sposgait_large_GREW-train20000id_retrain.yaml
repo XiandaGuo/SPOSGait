@@ -13,7 +13,7 @@ evaluator_cfg:
   enable_float16: false 
   restore_ckpt_strict: true
   restore_hint: 0
-  save_name: ResLGaitv2_supergait_aug_retrain
+  save_name: SPOSGait_large_GREW-train20000id_retrain
   eval_func: identification_GREW_submission # identification_real_scene # identification_GREW_submission
   sampler:
     batch_size: 8

@@ -19,7 +19,7 @@ parser.add_argument('--phase', default='train',
                     choices=['train', 'test'], help="choose train or test phase")
 parser.add_argument('--log_to_file', action='store_true',
                     help="log to file, default path is: output/<dataset>/<model>/<save_name>/<logs>/<Datetime>.txt")
-parser.add_argument('--iter', default=0, help="iter to restore")
+parser.add_argument('--iter', default=0, type=int, help="iter to restore")
 parser.add_argument('--num_train', default=0, help="number of ID to train")  # gxd
 parser.add_argument('--num_test', default=0, help="number of ID to test")  # gxd
 parser.add_argument('--num_distr', default=0, help="number of distrID to test")  # gxd

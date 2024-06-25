@@ -255,7 +255,7 @@ class SPOSGait_large(BaseModel):
                 model.save_ckpt(model.iteration)
 
                 # run test if with_test = true
-                if model.engine_cfg['with_test']and model.iteration>50000:
+                if model.engine_cfg['with_test']:
                     model.msg_mgr.log_info("Running test...")
                     model.eval()
                     result_dict = model.run_test(model, architecture)
