@@ -85,20 +85,5 @@ If this work is helpful for your research, please consider citing the following 
   pages={arXiv--2205},
   year={2022}
 }
-@inproceedings{wang2022gaitstrip,
-  title={Gaitstrip: Gait recognition via effective strip-based feature representations and multi-level framework},
-  author={Wang, Ming and Lin, Beibei and Guo, Xianda and Li, Lincheng and Zhu, Zheng and Sun, Jiande and Zhang, Shunli and Liu, Yu and Yu, Xin},
-  booktitle={Proceedings of the Asian conference on computer vision},
-  pages={536--551},
-  year={2022}
-}
-@inproceedings{wang2023dygait,
-  title={DyGait: Exploiting dynamic representations for high-performance gait recognition},
-  author={Wang, Ming and Guo, Xianda and Lin, Beibei and Yang, Tian and Zhu, Zheng and Li, Lincheng and Zhang, Shunli and Yu, Xin},
-  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
-  pages={13424--13433},
-  year={2023}
-}
-
 ```
 **Note**: This code is only used for academic purposes, people cannot use this code for anything that might be considered commercial use.
