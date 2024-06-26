@@ -21,11 +21,11 @@ evaluator_cfg:
     type: InferenceSampler
 
 loss_cfg:
-  - loss_term_weight: 0.1
+  - loss_term_weight: 1.0
     margin: 0.2
     type: TripletLoss
     log_prefix: triplet
-  - loss_term_weight: 1.0
+  - loss_term_weight: 0.1
     scale: 16
     type: CrossEntropyLoss
     log_prefix: softmax
@@ -89,6 +89,10 @@ trainer_cfg:
     frames_skip_num: 0
     sample_type: fixed_ordered
     type: TripletSampler
+
+  clip_grad_cfg:
+    type: value
+    clip_value: 0.1
 
   transform:
     - img_w: 64
