@@ -7,13 +7,14 @@ import torch.nn.functional as F
 from torch.cuda.amp import autocast
 
 from opengait.utils import Odict, ddp_all_gather
-from opengait.utils import get_valid_args, ts2np
+from opengait.utils import get_valid_args, ts2np, NoOp
 from opengait.evaluation import evaluation as eval_functions
 
 from opengait.modeling.base_model import BaseModel
 from opengait.modeling.modules import SeparateFCs, BasicConv3d, PackSequenceWrapper, SeparateBNNecks
 from opengait.modeling.models.SPOSGait_block import block
 
+from opengait.utils.clip_grad import ClipGrad
 
 def conv1x1x1(in_planes, out_planes, stride=1):
     return nn.Conv3d(in_planes,
@@ -53,6 +54,10 @@ class SPOSGait_large(BaseModel):
     def __init__(self, *args, **kargs):
         super(SPOSGait_large, self).__init__(*args, **kargs)
 
+        if 'clip_grad_cfg' in self.cfgs['trainer_cfg']:
+            self.clip_grade_config = self.cfgs['trainer_cfg'].get('clip_grad_cfg', {})
+            self.clip_gard = NoOp()
+            self.build_clip_grad()
     def build_network(self, model_cfg):
         self.model_cfg = model_cfg
         in_c = model_cfg['channels']
@@ -211,6 +216,15 @@ class SPOSGait_large(BaseModel):
             }
             return retval
 
+    def build_clip_grad(self):
+        clip_type = self.clip_grade_config.get('type', None)
+        if clip_type is None:
+            return
+        clip_value = self.clip_grade_config.get('clip_value', 0.1)
+        max_norm = self.clip_grade_config.get('max_norm', 35)
+        norm_type = self.clip_grade_config.get('norm_type', 2)
+        self.clip_gard = ClipGrad(clip_type, clip_value, max_norm, norm_type)
+
     @staticmethod
     def run_train(model):
         """Accept the instance object(model) here, and then run the train loop."""
@@ -288,7 +302,6 @@ class SPOSGait_large(BaseModel):
 
             # clip_gard by xianda.guo
             if 'clip_grad_cfg' in self.cfgs['trainer_cfg']:
-                self.msg_mgr.log_info('clip gard!')
                 self.Scaler.unscale_(self.optimizer)
                 self.clip_gard(self)
 

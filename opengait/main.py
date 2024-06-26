@@ -44,9 +44,14 @@ def initialization(cfgs, training):
     else:
         msg_mgr.init_logger(output_path, opt.log_to_file)
 
+    msg_mgr.log_info('-'*45 + 'cfgs' + '-'*45)
     msg_mgr.log_info(cfgs)
+    msg_mgr.log_info('-'*45 + 'loss_cfg'+ '-'*45)
     msg_mgr.log_info(cfgs['loss_cfg'])
+    msg_mgr.log_info('-' * 45 + 'engine_cfg' + '-' * 45)
     msg_mgr.log_info(engine_cfg)
+    msg_mgr.log_info('-' * 45 + 'model_cfg' + '-' * 45)
+    msg_mgr.log_info(cfgs['model_cfg'])
 
     seed = torch.distributed.get_rank()
     init_seeds(seed)
@@ -55,7 +60,6 @@ def initialization(cfgs, training):
 def run_model(cfgs, local_rank, training):
     msg_mgr = get_msg_mgr()
     model_cfg = cfgs['model_cfg']
-    msg_mgr.log_info(model_cfg)
     Model = getattr(models, model_cfg['model'])
     model = Model(cfgs, local_rank, training)
     if training and cfgs['trainer_cfg']['sync_BN']:

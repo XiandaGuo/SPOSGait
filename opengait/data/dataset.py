@@ -88,7 +88,7 @@ class DataSet(tordata.Dataset):
         if 'num_train' in data_config.keys():
             num_train = int(data_config['num_train'])
             if num_train != 0 and num_train != 20000:
-                msg_mgr.log_info('Note: Only the first {} IDs from the GREW training dataset were used to train the model.\n'.format(num_train) * 10)
+                msg_mgr.log_info('Note: Only the first {} IDs from the GREW training dataset were used to train the model.\n'.format(num_train) * 5)
                 train_set = train_set[:num_train]
 
         if 'num_test' in data_config:
