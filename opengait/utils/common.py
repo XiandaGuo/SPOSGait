@@ -197,7 +197,7 @@ def get_ddp_module(module, device, **kwargs):
         # for the case that loss module has not parameters.
         return module
 
-    if 'SuperGait' or 'SPOSGait' in module.cfgs['model_cfg']['model']:
+    if 'SPOSGait' in module.cfgs['model_cfg']['model']:
         flg_find_unused_parameters = True
     else:
         flg_find_unused_parameters = False

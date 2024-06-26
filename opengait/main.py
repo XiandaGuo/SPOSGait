@@ -71,7 +71,7 @@ def run_model(cfgs, local_rank, training):
     if training:
         Model.run_train(model)
     else:
-        if 'SuperGait' or 'SPOSGait' in model_cfg['model']:
+        if 'SPOSGait' in model_cfg['model']:
             Model.run_test(model, cfgs['retrain']['search_network'])
         else:
             Model.run_test(model)
