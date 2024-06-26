@@ -59,4 +59,6 @@
   CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7  python -u -m torch.distributed.launch --nproc_per_node=8  \\
  opengait/main.py --cfgs configs/sposgait/retrain/sposgait_large_GREW-train20000id_retrain.yaml
 
-#CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 nohup python -u -m torch.distributed.launch --nproc_per_node=8  --master_port 29501 opengait/search.py --cfgs configs/sposgait/sposgait_large_GREW_supertraining_2loss.yaml --max-epochs 10 >> output/GREW/logs/sposgait_large_GREW-train20000id_2loss_search.log &
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 nohup python -u -m torch.distributed.launch --nproc_per_node=8  --master_port 29501 opengait/main.py --cfgs configs/sposgait/retrain/sposgait_large_GREW-train500id_retrain.yaml > output/GREW/logs/sposgait_large_GREW-train500id.log &
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 nohup python -u -m torch.distributed.launch --nproc_per_node=8  --master_port 29501 opengait/main.py --cfgs configs/sposgait/retrain/sposgait_medium_GREW-500id_retrain.yaml > output/GREW/logs/sposgait_medium_GREW-train500id.log &
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 nohup python -u -m torch.distributed.launch --nproc_per_node=8  --master_port 29501 opengait/main.py --cfgs configs/sposgait/retrain/sposgait_small_GREW-train20000id_retrain.yaml > output/GREW/logs/sposgait_small_GREW-train2000id.log &

@@ -237,6 +237,13 @@ def identification_GREW_submission(data, dataset, use_dist=True, metric='euc'):
             f.write(output_row.format(probe_y[i], *r_format))
         print("GREW result saved to {}/{}".format(os.getcwd(), save_path))
 
+    try:
+        from gxd.score import get_scoreBy_localgt
+        ref_path = '/mnt/nas/algorithm/xianda.guo/data/grew_challenge_gt.csv'
+        scores = get_scoreBy_localgt(ref_path, save_path)
+        print('all results of rank20 *100 is:', list(scores))
+    except:
+        print('You need to submit the csv to codlab!')
     return
 
 

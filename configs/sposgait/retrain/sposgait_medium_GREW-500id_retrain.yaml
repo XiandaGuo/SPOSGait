@@ -76,10 +76,10 @@ trainer_cfg:
   log_iter: 100
   restore_ckpt_strict: true
   restore_hint: 0
-  save_iter: 30000
+  save_iter: 10000
   save_name: SPOSGait_medium-GREW-train500id_retrain
   sync_BN: true
-  total_iter: 100000
+  total_iter: 50000
   sampler:
     batch_shuffle: true
     batch_size:
