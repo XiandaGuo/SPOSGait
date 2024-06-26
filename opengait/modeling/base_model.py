@@ -300,7 +300,7 @@ class BaseModel(MetaModel, nn.Module):
     def _load_ckpt(self, save_name):
         load_ckpt_strict = self.engine_cfg['restore_ckpt_strict']
 
-        print('load checkpoint from:', save_name)
+        self.msg_mgr.log_info('load checkpoint from:', save_name)
         checkpoint = torch.load(save_name, map_location=torch.device(
             "cuda", self.device))
         model_state_dict = checkpoint['model']

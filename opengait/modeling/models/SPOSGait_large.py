@@ -266,6 +266,54 @@ class SPOSGait_large(BaseModel):
             if model.iteration >= model.engine_cfg['total_iter']:
                 break
 
+    def train_step(self, loss_sum) -> bool:
+        """Conduct loss_sum.backward(), self.optimizer.step() and self.scheduler.step().
+
+                Args:
+                    loss_sum:The loss of the current batch.
+                Returns:
+                    bool: True if the training is finished, False otherwise.
+                """
+        if self.cfgs['model_cfg']['model'] == 'cstl' and np.isnan(loss_sum.cpu().item()):
+            # print('NaN in loss occurred while train cstl model. Continue training.')
+            return False
+
+        self.optimizer.zero_grad()
+        if loss_sum <= 1e-9:
+            self.msg_mgr.log_warning(
+                "Find the loss sum less than 1e-9 but the training process will continue!")
+
+        if self.engine_cfg['enable_float16']:
+            self.Scaler.scale(loss_sum).backward()
+
+            # clip_gard by xianda.guo
+            if 'clip_grad_cfg' in self.cfgs['trainer_cfg']:
+                self.msg_mgr.log_info('clip gard!')
+                self.Scaler.unscale_(self.optimizer)
+                self.clip_gard(self)
+
+            self.Scaler.step(self.optimizer)
+            scale = self.Scaler.get_scale()
+            self.Scaler.update()
+            # Warning caused by optimizer skip when NaN
+            # https://discuss.pytorch.org/t/optimizer-step-before-lr-scheduler-step-error-using-gradscaler/92930/5
+            if scale != self.Scaler.get_scale():
+                self.msg_mgr.log_debug(
+                    "Training step skip. Expected the former scale equals to the present, got {} and {}".format(
+                        scale, self.Scaler.get_scale()))
+                return False
+        else:
+            loss_sum.backward()
+            # clip_gard by xianda.guo
+            if 'clip_grad_cfg' in self.cfgs['trainer_cfg']:
+                self.clip_gard(self)
+            self.optimizer.step()
+
+        self.iteration += 1
+        self.scheduler.step()
+
+        return True
+
     # for search
     def inference(self, rank, cand):
         """Inference all the test data.
