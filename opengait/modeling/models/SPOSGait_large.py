@@ -117,7 +117,6 @@ class SPOSGait_large(BaseModel):
                 raise ValueError('SeparateBNNecks must be in model_cfg.keys()')
         # print('only_use_tripletloss', self.only_use_tripletloss)
 
-
     def forward(self, inputs, cand=None):
         ipts, labs, _, _, seqL = inputs
         seqL = None if not self.training else seqL

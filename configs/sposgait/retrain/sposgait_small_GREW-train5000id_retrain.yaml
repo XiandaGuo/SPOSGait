@@ -87,6 +87,10 @@ trainer_cfg:
     sample_type: fixed_ordered
     type: TripletSampler
 
+  clip_grad_cfg:
+    type: value
+    clip_value: 0.1
+
   transform:
     - img_w: 64
       type: RandomRotateFlipTransform

@@ -17,7 +17,7 @@ parser.add_argument('--cfgs', type=str,
                     default='config/default.yaml', help="path of config file")
 parser.add_argument('--phase', default='train',
                     choices=['train', 'test'], help="choose train or test phase")
-parser.add_argument('--log_to_file', action='store_true',
+parser.add_argument('--log_to_file', default=True,
                     help="log to file, default path is: output/<dataset>/<model>/<save_name>/<logs>/<Datetime>.txt")
 parser.add_argument('--iter', default=0, type=int, help="iter to restore")
 parser.add_argument('--num_train', default=0, help="number of ID to train")  # gxd
