@@ -62,7 +62,6 @@ scheduler_cfg:
   milestones: # Learning Rate Reduction at each milestones
     - 20000
     - 40000
-    - 80000
   scheduler: MultiStepLR
 
 trainer_cfg:
