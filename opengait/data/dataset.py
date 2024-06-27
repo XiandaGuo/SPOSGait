@@ -95,7 +95,7 @@ class DataSet(tordata.Dataset):
             num_test = int(data_config['num_test'])
             from gxd.score import get_probe_list
             self.dic_probe = get_probe_list(num_test)
-            if num_test != 0:
+            if num_test != 0 and num_test != 6000:
                 msg_mgr.log_info('Note: Only the first {} IDs from the GREW testing dataset were used to train the model.\n'.format(num_test) * 5)
                 # msg_mgr.log_info('test_set is {}\n'.format(test_set))
                 test_set = test_set[:num_test]

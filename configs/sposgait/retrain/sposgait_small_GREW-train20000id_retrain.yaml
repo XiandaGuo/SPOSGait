@@ -49,7 +49,7 @@ model_cfg:
     - 16
 
 retrain: # 对应SPOSGait_large.py 230行
-  search_network: [0, 5, 5, 4]   #  supergait_retrain flg!!!
+  search_network: [0, 5, 5, 4]   #  SPOSGait retrain flg!!!
 
 optimizer_cfg:
   lr: 0.1
@@ -68,7 +68,7 @@ scheduler_cfg:
 trainer_cfg:
   enable_distributed: true
   enable_float16: true
-  with_test: false
+  with_test: true
   log_iter: 100
   restore_ckpt_strict: true
 
@@ -86,6 +86,10 @@ trainer_cfg:
     frames_skip_num: 0
     sample_type: fixed_ordered
     type: TripletSampler
+
+  clip_grad_cfg:
+    type: value
+    clip_value: 0.1
 
   transform:
     - img_w: 64

@@ -21,11 +21,11 @@ evaluator_cfg:
     type: InferenceSampler
 
 loss_cfg:
-  - loss_term_weight: 0.1
+  - loss_term_weight: 1.0
     margin: 0.2
     type: TripletLoss
     log_prefix: triplet
-  - loss_term_weight: 1.0
+  - loss_term_weight: 0.1
     scale: 16
     type: CrossEntropyLoss
     log_prefix: softmax
@@ -53,7 +53,7 @@ model_cfg:
     - 1
 
 retrain:  # 对应SPOSGait_large.py 230行
-  search_network: [0, 0, 4, 3, 0, 3, 0]   #  supergait_retrain flg!!!
+  search_network: [0, 0, 4, 3, 0, 3, 0]   #  SPOSGait retrain flg!!!
 
 optimizer_cfg:
   lr: 0.1
@@ -78,7 +78,7 @@ trainer_cfg:
   save_iter: 10000
   save_name: SPOSGait_medium-GREW-train500id_retrain
   sync_BN: true
-  total_iter: 50000
+  total_iter: 60000
   sampler:
     batch_shuffle: true
     batch_size:

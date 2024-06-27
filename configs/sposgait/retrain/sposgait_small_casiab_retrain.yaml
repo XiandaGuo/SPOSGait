@@ -51,7 +51,7 @@ model_cfg:
     - 16
 
 retrain: # 对应SPOSGait_large.py 230行
-  search_network: [0, 5, 0, 1]   #  supergait_retrain flg!!!
+  search_network: [0, 5, 0, 1]   #  SPOSGait retrain flg!!!
   
 optimizer_cfg:
   lr: 0.1

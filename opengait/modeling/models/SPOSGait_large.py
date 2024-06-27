@@ -240,7 +240,7 @@ class SPOSGait_large(BaseModel):
 
                 if 'retrain' in model.cfgs.keys():
                     if i == 5:
-                        print('supergait_retrain in model.cfgs, start to retrain the network!')
+                        print('SPOSGait retrain in model.cfgs, start to retrain the network!')
                     architecture = model.cfgs["retrain"]['search_network']
                 else:
                     # raise ValueError('Attention!!! only used in nas train!!!')
