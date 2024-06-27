@@ -40,11 +40,6 @@ You can run commands in [train.sh](train.sh) for training different models.
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -u -m torch.distributed.launch --nproc_per_node=8  opengait/search.py --cfgs ./configs/sposgait/sposgait_large_GREW_supertraining_triplet.yaml --max-epochs 20
 ```
 
-### Calculate_flops_and_params
-```
-CUDA_VISIBLE_DEVICES=0 python -u -m torch.distributed.launch --nproc_per_node=1 opengait/calculate_flops_and_params.py --cfgs configs/sposgait/retrain/sposgait_large_GREW-train20000id_retrain.yaml
-```
-
 
 ### 3. ReTrain
 Train a model by
@@ -67,6 +62,16 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_
 ```
 - `--phase` Specified as `test`.
 - `--iter` Specify a iteration checkpoint.
+
+You can run commands in [test.sh](test.sh) for training different models.
+
+Participants must package the submission.csv for submission using zip xxx.zip $CSV_PATH and then upload it to [codalab](https://codalab.lisn.upsaclay.fr/competitions/3409).
+
+### Calculate_flops_and_params
+```
+CUDA_VISIBLE_DEVICES=0 python -u -m torch.distributed.launch --nproc_per_node=1 opengait/calculate_flops_and_params.py --cfgs configs/sposgait/retrain/sposgait_large_GREW-train20000id_retrain.yaml
+```
+
 
 ## Citation
 If this work is helpful for your research, please consider citing the following BibTeX entries.
