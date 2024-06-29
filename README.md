@@ -2,7 +2,7 @@
 
 ### [Paper](https://arxiv.org/pdf/2205.02692)
 
-> Gait Recognition in the Wild: A Large-scale Benchmark and NAS-based Baseline
+> [Gait Recognition in the Wild: A Large-scale Benchmark and NAS-based Baseline](https://arxiv.org/pdf/2205.02692)
 
 > [Xianda Guo](https://scholar.google.com/citations?user=jPvOqgYAAAAJ), [Zheng Zhu](https://scholar.google.com.hk/citations?user=NmwjI0AAAAAJ&hl=zh-CN), Tian Yang, [BeiBei Lin](https://scholar.google.com.hk/citations?user=KyvHam4AAAAJ&hl=zh-CN), Junjie Huang, [Jiankang Deng](https://scholar.google.com.hk/citations?user=Z_UoQFsAAAAJ&hl=zh-CN), Guan Huang, [Jie Zhou](https://scholar.google.com.hk/citations?user=6a79aPwAAAAJ&hl=zh-CN), [Jiwen Lu](https://scholar.google.com.hk/citations?user=TN8uDQoAAAAJ&hl=zh-CN).
 
