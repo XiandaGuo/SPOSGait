@@ -73,6 +73,11 @@ CUDA_VISIBLE_DEVICES=0 python -u -m torch.distributed.launch --nproc_per_node=1 
 ```
 
 
+## Acknowledgement
+- [DyGait](https://github.com/M-Candy77/DyGait)
+- [OpenGait](https://github.com/ShiqiYu/OpenGait)
+
+
 ## Citation
 If this work is helpful for your research, please consider citing the following BibTeX entries.
 ```
