@@ -7,7 +7,7 @@
 > [Xianda Guo](https://scholar.google.com/citations?user=jPvOqgYAAAAJ), [Zheng Zhu](https://scholar.google.com.hk/citations?user=NmwjI0AAAAAJ&hl=zh-CN), Tian Yang, [BeiBei Lin](https://scholar.google.com.hk/citations?user=KyvHam4AAAAJ&hl=zh-CN), Junjie Huang, [Jiankang Deng](https://scholar.google.com.hk/citations?user=Z_UoQFsAAAAJ&hl=zh-CN), Guan Huang, [Jie Zhou](https://scholar.google.com.hk/citations?user=6a79aPwAAAAJ&hl=zh-CN), [Jiwen Lu](https://scholar.google.com.hk/citations?user=TN8uDQoAAAAJ&hl=zh-CN).
 
 ## News 
-
+- **[2025/2]** This paper has been accepted to T-PAMI.
 - **[2024/6/24]** Training and evaluation code release.
 - **[2024/1]** Paper released on [arXiv](https://arxiv.org/pdf/2205.02692).
 
