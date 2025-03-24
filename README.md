@@ -28,10 +28,10 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -u -m torch.distributed.launch --npr
 - `--nproc_per_node` The number of gpus to use, and it must equal the length of `CUDA_VISIBLE_DEVICES`.
 - `--cfgs` The path to config file.
 - `--phase` Specified as `train`.
-<!-- - `--iter` You can specify a number of iterations or use `restore_hint` in the config file and resume training from there. -->
+<!-- - `--iter` You can specify the number of iterations or use `restore_hint` in the config file and resume training from there. -->
 - `--log_to_file` If specified, the terminal log will be written on disk simultaneously. 
 
-You can run commands in [train.sh](train.sh) for training different models.
+You can run commands in [train.sh](train.sh) to train different models.
 
 
 ### 2. Search
@@ -53,7 +53,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -u -m torch.distributed.launch --npr
 <!-- - `--iter` You can specify a number of iterations or use `restore_hint` in the config file and resume training from there. -->
 - `--log_to_file` If specified, the terminal log will be written on disk simultaneously. 
 
-You can run commands in [train.sh](train.sh) for training different models.
+You can run commands in [train.sh](train.sh) to train different models.
 
 ### 4. Test
 Evaluate the trained model by
@@ -61,9 +61,9 @@ Evaluate the trained model by
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node=8 opengait/main.py --cfgs ./configs/sposgait/retrain/sposgait_large_GREW-train20000id_retrain.yaml --phase test
 ```
 - `--phase` Specified as `test`.
-- `--iter` Specify a iteration checkpoint.
+- `--iter` Specify an iteration checkpoint.
 
-You can run commands in [test.sh](test.sh) for training different models.
+You can run commands in [test.sh](test.sh) to train different models.
 
 Participants must package the submission.csv for submission using zip xxx.zip $CSV_PATH and then upload it to [codalab](https://codalab.lisn.upsaclay.fr/competitions/3409).
 
@@ -88,12 +88,17 @@ If this work is helpful for your research, please consider citing the following 
   pages={14789--14799},
   year={2021}
 }
-@article{guo2022gait,
-  title={Gait Recognition in the Wild: A Large-scale Benchmark and NAS-based Baseline},
+@ARTICLE{10906429,
   author={Guo, Xianda and Zhu, Zheng and Yang, Tian and Lin, Beibei and Huang, Junjie and Deng, Jiankang and Huang, Guan and Zhou, Jie and Lu, Jiwen},
-  journal={arXiv e-prints},
-  pages={arXiv--2205},
-  year={2022}
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+  title={Gait Recognition in the Wild: A Large-scale Benchmark and NAS-based Baseline}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={1-18},
+  keywords={Gait recognition;Benchmark testing;Training;Three-dimensional displays;Legged locomotion;Cameras;Videos;Streams;Face recognition;Neural architecture search;Large-scale Gait Recognition;Biometric Authentication;Neural Architecture Search},
+  doi={10.1109/TPAMI.2025.3546482}
 }
+
 ```
 **Note**: This code is only used for academic purposes, people cannot use this code for anything that might be considered commercial use.
