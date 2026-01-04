@@ -88,16 +88,12 @@ If this work is helpful for your research, please consider citing the following 
   pages={14789--14799},
   year={2021}
 }
-@ARTICLE{10906429,
+@article{guo2025gait,
+  title={Gait recognition in the wild: A large-scale benchmark and NAS-based baseline},
   author={Guo, Xianda and Zhu, Zheng and Yang, Tian and Lin, Beibei and Huang, Junjie and Deng, Jiankang and Huang, Guan and Zhou, Jie and Lu, Jiwen},
-  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
-  title={Gait Recognition in the Wild: A Large-scale Benchmark and NAS-based Baseline}, 
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
   year={2025},
-  volume={},
-  number={},
-  pages={1-18},
-  keywords={Gait recognition;Benchmark testing;Training;Three-dimensional displays;Legged locomotion;Cameras;Videos;Streams;Face recognition;Neural architecture search;Large-scale Gait Recognition;Biometric Authentication;Neural Architecture Search},
-  doi={10.1109/TPAMI.2025.3546482}
+  publisher={IEEE}
 }
 
 ```
